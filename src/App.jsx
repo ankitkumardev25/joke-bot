@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
-
+import { useKeyDown } from './useKeyDown'
 import './App.css'
+import VoiceSelector from './VoiceSelector'
 
 function App() {
   const [selectedVoice, setSelectedVoice] = useState(147)
@@ -14,12 +15,21 @@ function App() {
     )
     return data[0]
   }
+  const synth = window.speechSynthesis
+
+  const speak = (text, voice) => {
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.voice = synth.getVoices()[voice]
+    utterance.pitch = 2
+    utterance.rate = 1
+    synth.speak(utterance)
+  }
 
   const tellMeAJoke = async () => {
     setLoading(true)
     const joke = await getJoke()
     setJoke(joke)
-    speak(`${joke.setup} ${joke.punchline} ja ja ja`, selectedVoice)
+    speak(`${joke.setup} ${joke.punchline} HA HA HA`, selectedVoice)
     setLoading(false)
   }
 
@@ -27,7 +37,7 @@ function App() {
 
   return (
     <div className="center">
-      <img src={require('./robot.gif')} alt="robot" />
+      <img className="logo" src="src\assets\robot.gif" alt="robot" />
       <VoiceSelector selected={selectedVoice} setSelected={setSelectedVoice} />
       {!!joke && (
         <div>
