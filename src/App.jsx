@@ -38,7 +38,11 @@ function App() {
   return (
     <div className="center">
       <div className="header">
-        <img className="logo" src="src\assets\robot.gif" alt="robot" />
+        <img
+          className="logo"
+          src="https://media2.giphy.com/avatars/HeyAutoHQ/DgfrJNR8oUyv.gif"
+          alt="robot"
+        />
         <h1>Joke Bot</h1>
       </div>
       <div className="content">
