@@ -67,3 +67,28 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+body {
+  background-color: hsl(0, 0%, 2%);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+button {
+  display: block;
+  padding: 15px;
+  background-color: hsl(213.33deg 85.04% 49.8%);
+  border: 0;
+  color: white;
+  font-size: x-large;
+  margin: auto;
+}
+
+select {
+  padding: 5px;
+  margin: 15px 0;
+}

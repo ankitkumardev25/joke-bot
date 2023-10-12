@@ -6,8 +6,8 @@
 }
 
 .logo {
-  height: 20em;
-  width: 20em;
+  height: 15em;
+  width: 15em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 400ms;
@@ -40,4 +40,64 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* App Container */
+.app-container {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #cff208;
+}
+
+/* Content */
+.content {
+  text-align: center;
+}
+
+.joke {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.joke p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.joke-placeholder {
+  font-size: 16px;
+  color: #666;
+}
+
+.joke-button {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.joke-button:hover {
+  background-color: #0056b3;
 }

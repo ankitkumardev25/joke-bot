@@ -9,20 +9,13 @@ function App() {
   const [joke, setJoke] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  useKeyDown(() => tellMeAJoke(), ['j'])
+
   async function getJoke() {
     const { data } = await axios.get(
       'https://official-joke-api.appspot.com/jokes/programming/random'
     )
     return data[0]
-  }
-  const synth = window.speechSynthesis
-
-  const speak = (text, voice) => {
-    const utterance = new SpeechSynthesisUtterance(text)
-    utterance.voice = synth.getVoices()[voice]
-    utterance.pitch = 2
-    utterance.rate = 1
-    synth.speak(utterance)
   }
 
   const tellMeAJoke = async () => {
@@ -33,23 +26,44 @@ function App() {
     setLoading(false)
   }
 
-  useKeyDown(() => tellMeAJoke(), ['j'])
+  const speak = (text, voice) => {
+    const synth = window.speechSynthesis
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.voice = synth.getVoices()[voice]
+    utterance.pitch = 2
+    utterance.rate = 1
+    synth.speak(utterance)
+  }
 
   return (
     <div className="center">
-      <img className="logo" src="src\assets\robot.gif" alt="robot" />
-      <VoiceSelector selected={selectedVoice} setSelected={setSelectedVoice} />
-      {!!joke && (
-        <div>
-          <p>{joke.setup}</p>
-          <p>{joke.punchline}</p>
-        </div>
-      )}
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <button onClick={tellMeAJoke}>Tell me a joke!</button>
-      )}
+      <div className="header">
+        <img className="logo" src="src\assets\robot.gif" alt="robot" />
+        <h1>Joke Bot</h1>
+      </div>
+      <div className="content">
+        <VoiceSelector
+          selected={selectedVoice}
+          setSelected={setSelectedVoice}
+        />
+        {!!joke ? (
+          <div className="joke">
+            <p>{joke.setup}</p>
+            <p>{joke.punchline}</p>
+          </div>
+        ) : (
+          <div className="joke-placeholder">
+            <p>Click the button to hear a joke!</p>
+          </div>
+        )}
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <button className="joke-button" onClick={tellMeAJoke}>
+            Tell me a joke!
+          </button>
+        )}
+      </div>
     </div>
   )
 }
